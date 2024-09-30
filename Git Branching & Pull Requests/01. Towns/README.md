@@ -1,7 +1,7 @@
 ## Towns
-# Exercise for students in the teamwork course at SoftUni-Svetlina @Software Engineering cource
+# Exercise for students in the teamwork course at SoftUni @Software Engineering and DevOps - September 2024
 
 # Roles
-  Stephan takes the role “Editor”.
-  Peter takes the role “Shiffler”.
-  Maria takes the role “Styler”.
+  Miro takes the role “Editor”.
+  '...' takes the role “Shiffler”.
+  Peter takes the role “Styler”.
