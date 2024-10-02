@@ -19,26 +19,26 @@ function addTown() {
         $('#result').show(); 
     }
 }
-function deleteTown() {
-    let townName = $('#townName').val();
-    $('#townName').val('');
-    let removed = false;
-    for (let option of $('#towns option')) {
-        if (option.textContent == townName) {
-            removed = true;
-            option.remove();
-        }
+
+function shuffleTowns() {
+    const townSelect = document.getElementById('townSelect');
+
+    // Get the options from the select element
+    let towns = Array.from(townSelect.options).map(option => option.text);
+    
+    // Fisher-Yates shuffle algorithm
+    for (let i = towns.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [towns[i], towns[j]] = [towns[j], towns[i]];
     }
-    if (removed)
-        showMessage(townName + " deleted.");
-    else
-        showMessage(townName + " not found.");
-}
 
-function showMessage(msg) {
-    $('#result').text(msg).css("display", "block");
-    setTimeout(function () {
-        $('#result').hide('blind', {}, 500);
-    }, 3000);
-}
+    // Clear the current options in the select element
+    townSelect.innerHTML = '';
 
+    // Add shuffled towns as new options
+    towns.forEach(town => {
+        const option = document.createElement('option');
+        option.textContent = town;
+        townSelect.appendChild(option);
+    });
+}
