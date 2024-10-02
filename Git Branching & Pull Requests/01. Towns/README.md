@@ -3,5 +3,5 @@
 
 # Roles
   Miro takes the role “Editor”.
-  '...' takes the role “Shiffler”.
+  Dimitar takes the role “Shiffler”.
   Peter takes the role “Styler”.
