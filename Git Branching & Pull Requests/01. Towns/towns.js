@@ -48,7 +48,7 @@ function showMessage(msg) {
 }
 
 function shuffleTowns() {
-    const townSelect = document.getElementById('townSelect');
+    const townSelect = document.getElementById('towns');
 
     // Get the options from the select element
     let towns = Array.from(townSelect.options).map(option => option.text);
