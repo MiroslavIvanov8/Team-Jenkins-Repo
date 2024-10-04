@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Offers with Pagination</title>
+    <link rel="stylesheet" href="static/css/styles.css"> <!-- Link to your external CSS -->
+</head>
+<body>
+
+    <h2>Our Offers</h2>
+    <div id="offers"></div>
+
+    <div class="pagination">
+        <button id="prev" onclick="changePage(-1)">Back</button>
+        <button id="next" onclick="changePage(1)">Next</button>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const offersDiv = document.getElementById('offers');
+
+        function loadOffers(page) {
+            fetch(`/offers?page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    offersDiv.innerHTML = ''; // Clear the current offers
+                    data.offers.forEach(offer => {
+                        const offerDiv = document.createElement('div');
+                        offerDiv.classList.add('offer');
+                        offerDiv.innerHTML = `
+                            <h3>${offer.name}</h3>
+                            <img src="/img/${offer.image}" alt="${offer.name}">
+                            <p>Price: $${offer.price}</p>
+                        `;
+                        offersDiv.appendChild(offerDiv);
+                    });
+
+                    // Enable/disable the pagination buttons
+                    document.getElementById('prev').disabled = !data.hasPrev;
+                    document.getElementById('next').disabled = !data.hasNext;
+                })
+                .catch(err => console.error('Error fetching offers:', err));
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            loadOffers(currentPage);
+        }
+
+        // Load the initial page of offers
+        loadOffers(currentPage);
+    </script>
+
+</body>
+</html>
